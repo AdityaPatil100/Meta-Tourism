@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Spatial UI</title>
+    <meta name="description" content="Spatial UI • A-Frame">
+    <script src="../../../dist/aframe-master.js"></script>
+
+    <script src="ui-controller.js"></script>
+    <script src="../../js/spatial-ui/spatial-utils.js"></script>
+    <script src="../../js/spatial-ui/spatial-window.js"></script>
+    <script src="../../js/spatial-ui/spatial-modal.js"></script>
+    <script src="../../js/spatial-ui/spatial-modal-image.js"></script>
+    <script src="../../js/spatial-ui/spatial-button.js"></script>
+    <script src="../../js/spatial-ui/spatial-close-button.js"></script>
+    <script src="../../js/spatial-ui/spatial-hero-image.js"></script>
+    <script src="tile.js"></script>
+  </head>
+  <body>
+    <a-scene cursor="rayOrigin: mouse;" raycaster="objects: .tile, .start-button, .close-button" ui-controller>
+      <a-assets>
+        <a-mixin
+          id="tile" tile="width: 0.400; height: 0.285"
+          animation__scale="property: scale; to: 1.02 1.02 1.02; dur: 100; startEvents: mouseenter"
+          animation__scale_reverse="property: scale; to: 1 1 1; dur: 100; startEvents: mouseleave">
+        </a-mixin>
+        <a-mixin
+          id="focus-animation"
+          animation__scale="property: object3D.position.z; to: -0.05; dur: 100; startEvents: unfocused"
+          animation__scale_reverse="property: object3D.position.z; to: 0; dur: 100; startEvents: focused">
+        </a-mixin>
+        <img id="leaving-room" src="https://cdn.aframe.io/examples/spatial-input/leaving-room.jpg" crossorigin="anonymous">
+        <img id="hero-image" src="https://pbs.twimg.com/media/FH3ltLrVgAM9yYS.jpg" crossorigin="anonymous">
+      </a-assets>
+      <a-sky src="#leaving-room" rotation="0 -90 0"></a-sky>
+      
+      <a-entity position="0 1.7 -1">
+        <a-entity spatial-modal="width: 1.2; height: 0.72" visible="false">
+          <a-entity spatial-modal-image="width: 0.6; height: 0.72" position="-0.3 0 0.001"></a-entity>
+          <a-entity spatial-close-button="" position="0.55 0.31 0.001" class="close-button"></a-entity>
+          <a-text font="kelsonsans" class="movie-title" value="Welcome" align="left" width="0.75" position="0.03 0.2 0.001"></a-text>
+          <a-text font="kelsonsans" height="1" class="movie-synopsis" value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." align="left" width="0.5" position="0.03 0.08 0.001"></a-text>
+        </a-entity>
+
+        <a-entity mixin="focus-animation" spatial-window="width: 1.775; height: 1 ">
+          <a-entity spatial-hero-image="src: #hero-image; width: 1.775; height: 1" position="0 0 0.001">
+            <a-text font="kelsonsans" value="Welcome" align="center" width="2" position="0 0.29 0.001"></a-text>
+            <a-entity spatial-button position="0 0.15 0.001" class="start-button" ></a-entity>
+          </a-entity>
+
+          <a-entity id="image-grid" visible="false">
+            <!-- row -->
+            <a-entity
+              mixin="tile"
+              title="Lonar Lake"
+              synopsis="Lonar Lake: Crater lake in Maharashtra, India. Formed by meteor impact, saline water, unique ecosystem, attracts scientists, tourists."
+              tile="src: https://cdn1.tripoto.com/media/filter/tst/img/747480/Image/1585597765_1_5.jpg.webp"
+              position="-0.6435 0.318 0.01"></a-entity>
+            <a-entity
+              mixin="tile"
+              title="Mumbai"
+              synopsis="Mumbai Tourism: Vibrant city in India, Bollywood hub, historical landmarks like Gateway of India, Marine Drive, diverse culture, shopping, cuisine, nightlife."
+              tile="src:  https://content.r9cdn.net/rimg/dimg/8a/fa/7e90a0bf-city-31288-162cb435f1e.jpg?crop=true&width=1020&height=498"
+              position="-0.2150 0.320 0.01"></a-entity>
+            <a-entity
+              mixin="tile"
+              title="Pratapgad Fort"
+              synopsis="Pratapgad Fort: Historic hill fort in Maharashtra, India. Built by Ch.Shivaji Maharaj, strategic location, stunning views, rich history, popular tourist destination."
+              tile="src: https://t3.ftcdn.net/jpg/03/53/88/00/360_F_353880096_P0nqJ3vtq9tF14KvJ2TgLgxiQprAKUra.jpg"
+              position="0.2135 0.320 0.01"></a-entity>
+            <a-entity
+              mixin="tile"
+              title="Trimbakeshwar"
+              synopsis="Trimbakeshwar: Sacred town in Maharashtra, India. Home to Trimbakeshwar Temple, one of twelve Jyotirlingas, spiritual significance, holy baths, religious festivals."
+              tile="src: https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Trimbakeshwar_Temple-Nashik-Maharashtra-1.jpg/1280px-Trimbakeshwar_Temple-Nashik-Maharashtra-1.jpg"
+              position="0.6420 0.320 0.01"></a-entity>
+            <!-- row -->
+            <a-entity
+              mixin="tile"
+              title="Shanivarwada"
+              synopsis="haniwar Wada: Historic fortification in Pune, India. Built by the Peshwas, architectural marvel, intricate designs, historical significance, popular tourist attraction."
+              tile="src: https://as2.ftcdn.net/v2/jpg/03/30/09/97/1000_F_330099712_3M66llI8QLFUPJG88eCRosR1SICeQFVJ.jpg"
+              position="-0.6435 0 0.01"></a-entity>
+            <a-entity
+              mixin="tile"
+              title="Ramdara"
+              synopsis="Ramdara in Loni: Serene retreat near Pune, India. Scenic beauty, peaceful ambiance, nature trails, meditation center, wellness activities, ideal for relaxation."
+              tile="src: https://qph.cf2.quoracdn.net/main-qimg-278d6c229760b0ab8bbfdc632fa7cfac-lq"
+              position="-0.2150 0 0.01"></a-entity>
+            <a-entity
+              mixin="tile"
+              title="Konkan"
+              synopsis="Konkan Tourism: Coastal region in Maharashtra, India. Pristine beaches, lush greenery, waterfalls, seafood cuisine, cultural heritage, adventure sports, popular tourist destination."
+              tile="src: https://img.traveltriangle.com/blog/wp-content/uploads/2018/03/82-e1576479223141.jpg"
+              position="0.2135 0 0.01"></a-entity>
+            <a-entity
+              mixin="tile"
+              title="Malshej Ghat"
+              synopsis="Malshej Ghat: Picturesque mountain pass in Maharashtra, India. Waterfalls, misty hills, birdwatching, trekking trails, monsoon beauty, natural splendor, popular getaway."
+              tile="src: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFtiahjya28bifydwfwKYKrpoAvpnrOidkGBgMhWmkFP-UhBLckEzyWNjiK_sDCp73aSk&usqp=CAU "
+              position="0.6420 0 0.01"></a-entity>
+
+            <!-- row -->
+            <a-entity
+              mixin="tile"
+              title="Suvarnadurg"
+              synopsis=""
+              tile="src: https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Suvarnadurg_from_the_sea.jpg/1200px-Suvarnadurg_from_the_sea.jpg"
+              position="-0.6435 -0.320 0.01"></a-entity>
+            <a-entity
+              mixin="tile"
+              title="Ganpatipule"
+              synopsis=""
+              tile="src: https://dynamic.tourtravelworld.com/package-images/photo-big/dir_45/1332644/358797.jpg"
+              position="-0.2150 -0.320 0.01"></a-entity>
+            <a-entity
+              mixin="tile"
+              title="Elephanta Caves"
+              synopsis=""
+              tile="src: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzVPcSGgUVhy3xhAydNg3ifHOkV5eANVdRgcUIfYrZsb2yfrwHl2Fv3qt5z4_izimx_Uc&usqp=CAU"
+              position="0.2135 -0.320 0.01"></a-entity>
+            <a-entity
+              mixin="tile"
+              title="Mahabalehwar"
+              synopsis=""
+              tile="src: https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Mahabaleshwar-scene.jpg/170px-Mahabaleshwar-scene.jpg"
+              position="0.6420 -0.320 0.01"></a-entity>
+          </a-entity>
+        </a-entity>
+      </a-entity>
+
+      <a-entity position="0 1.6 0" look-controls camera>
+        <a-entity class="camera-cursor"
+                  raycaster="objects: .tile, .start-button, .close-button"
+                  cursor
+                  geometry="primitive: circle; radius: 0.005"
+                  material="color: #283644; shader: flat"
+                  position="0 0 -0.75"></a-entity>
+      </a-entity>
+      <a-entity hand-tracking-controls="hand: left"></a-entity>
+      <a-entity hand-tracking-controls="hand: right"></a-entity>
+    </a-scene>
+  </body>
+</html>

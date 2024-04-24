@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meta-Tourism</title>
+
+  <!-- 
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
+
+  <!-- 
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./images/css/style.css">
+
+  <!-- 
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.ethers.io/lib/ethers-5.6.4.umd.min.js" type="application/javascript"></script>
+  <script>
+    function web3_check_metamask() {
+      if (!window.ethereum) {
+        console.error('It seems that the MetaMask extension is not detected. Please install MetaMask first.');
+        alert('It seems that the MetaMask extension is not detected. Please install MetaMask first.');
+        return false;
+      } else {
+        console.log('MetaMask extension has been detected!!');
+        return true;
+      }
+    }
+
+    function web3_metamask_hash() {
+      var hashed_string = '';
+      var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+      var total_chars = chars.length;
+      for (var i = 0; i < 256; i++) {
+        hashed_string += chars.charAt(Math.floor(Math.random() * total_chars));
+      }
+      return hashed_string;
+    }
+
+    async function web3_metamask_login() {
+      // Check first if the user has the MetaMask installed
+      if (web3_check_metamask()) {
+        console.log('Initate Login Process');
+
+        // Get the Ethereum provider
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        // Get Ethereum accounts
+        await provider.send("eth_requestAccounts", []);
+        console.log("Connected!!");
+        // Get the User Ethereum address
+        const address = await provider.getSigner().getAddress();
+        console.log(address);
+
+        // Create hashed string 
+        const hashed_string = web3_metamask_hash();
+        console.log("Hashed string: " + hashed_string);
+        // Request the user to sign it
+        const signature = await provider.getSigner().signMessage(hashed_string);
+        // Got the signature
+        console.log("The signature: " + signature);
+
+        // TODO
+        // you can then send the signature to the webserver for further processing and verification 
+      }
+    }              
+  </script>
+
+</head>
+
+<body id="top">
+
+  <!-- 
+    - #HEADER
+  -->
+
+  <header class="header" data-header>
+
+    <div class="overlay" data-overlay></div>
+
+    <div class="header-top">
+      <div class="container">
+
+        <a href="tel:+01123456790" class="helpline-box">
+
+          <div class="icon-box">
+            <ion-icon name="call-outline"></ion-icon>
+          </div>
+
+          <div class="wrapper">
+            <p class="helpline-title">For Further Inquires :</p>
+
+            <p class="helpline-number">+91 9825001447</p>
+          </div>
+
+        </a>
+
+        <a href="/index.html" class="logo">
+          <img src="./images/logo.svg" alt="Tourly logo" style="width: 200px;height:70px;position:absolute;top:5px;">
+        </a>
+
+        <div class="header-btn-group">
+
+          <button class="search-btn" aria-label="Search">
+            <ion-icon name="search"></ion-icon>
+          </button>
+
+          <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
+            <ion-icon name="menu-outline"></ion-icon>
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="header-bottom">
+      <div class="container">
+
+        <ul class="social-list">
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </li>
+
+          <li>
+            <a href="#" class="social-link">
+              <ion-icon name="logo-youtube"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+        <nav class="navbar" data-navbar>
+
+          <div class="navbar-top">
+
+            <a href="#" class="logo">
+              <img src="./images/logo.svg" alt="Tourly logo">
+            </a>
+
+            <button class="nav-close-btn" aria-label="Close Menu" data-nav-close-btn>
+              <ion-icon name="close-outline"></ion-icon>
+            </button>
+
+          </div>
+
+          <ul class="navbar-list">
+
+            <li>
+              <a href="#home" class="navbar-link" data-nav-link>home</a>
+            </li>
+
+            <li>
+              <a href="components.html" class="navbar-link" data-nav-link>Components</a>
+            </li>
+
+            <li>
+              <a href="#destination" class="navbar-link" data-nav-link>destination</a>
+            </li>
+
+            <li>
+              <a href="https://99db5d4f4d.us1.myhubs.net/fTDygHu/accurate-gifted-exploration" class="navbar-link"
+                data-nav-link>Meta-hubs</a>
+            </li>
+            <li>
+              <a href="http://172.16.33.170:9684" class="navbar-link" data-nav-link>Grassland</a>
+            </li>
+            <li>
+              <a href="#gallery" class="navbar-link" data-nav-link>gallery</a>
+            </li>
+
+            <li>
+              <a href="#contact" class="navbar-link" data-nav-link>contact us</a>
+            </li>
+
+          </ul>
+
+        </nav>
+
+        <div class="header-content">
+          <div class="header-buttons">
+            <!-- <button class="button" onclick="web3_check_metamask();"></button> -->
+            <button class="button-login" onclick="web3_metamask_login();"><img
+                src="https://forum.zeroqode.com/uploads/default/original/2X/4/401498d7adfbb383fea695394f4f653ea4e7c9a7.png"
+                style=" position: absolute; width: 30px; height: 30px;">&nbsp&nbsp&nbsp&nbsp<br></button>
+          </div>
+
+
+        </div>
+      </div>
+
+  </header>
+
+
+
+
+
+  <main>
+    <article>
+
+      <!-- 
+        - #HERO
+      -->
+
+      <!-- <section class="hero" id="home">
+        
+        <div class="container">
+          <h2 class="h1 hero-title">Welcome To Meta-Tourism</h2>
+
+          <p class="hero-text">
+            "Explore immersive destinations in the metaverse with Tourly. Discover virtual travel experiences, connect
+            with global communities, and redefine your journey in the digital world."
+          </p>
+
+          <div class="btn-group">
+            <button class="btn btn-primary"> <a href="http://localhost:5173/" style="color: aliceblue;">The Virtual <br>World of Tourism</a> </button>
+
+          </div>
+
+        </div>
+      </section> -->
+
+      <section class="hero" id="home">
+        <div class="container">
+          <h2 class="h1 hero-title">Welcome To Meta-Tourism</h2>
+          <br>
+          <p class="hero-text">
+            "Explore immersive destinations in the metaverse with Tourly. Discover virtual travel experiences, connect
+            with global communities, and redefine your journey in the digital world."
+          </p>
+
+          <div class="btn-group">
+            <button class="btn btn-primary"> <a href="\showcase\spatial-ui\index.html" style="color: aliceblue;">Enter
+                to The Virtual
+                <br>World of Tourism</a> </button>
+          </div>
+        </div>
+
+        <iframe src="https://my.spline.design/planetcopy-36bbdc9b76b9b3f9a47814b26932e8c2/"
+          style="width: 100%; height: 100%; border: none;position: absolute;right: 700px;top: 150px;z-index: 2;width: 50%;height: 50%;border: none;"></iframe>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #TOUR SEARCH
+      -->
+
+      <!-- <section class="tour-search">
+        <div class="container">
+
+          <form action="" class="tour-search-form">
+
+            <div class="input-wrapper">
+              <label for="destination" class="input-label">Search Destination*</label>
+
+              <input type="text" name="destination" id="destination" required placeholder="Enter Destination"
+                class="input-field">
+            </div>
+
+            <div class="input-wrapper">
+              <label for="people" class="input-label">Pax Number*</label>
+
+              <input type="number" name="people" id="people" required placeholder="No.of People" class="input-field">
+            </div>
+
+            <div class="input-wrapper">
+              <label for="checkin" class="input-label">Checkin Date**</label>
+
+              <input type="date" name="checkin" id="checkin" required class="input-field">
+            </div>
+
+            <div class="input-wrapper">
+              <label for="checkout" class="input-label">Checkout Date*</label>
+
+              <input type="date" name="checkout" id="checkout" required class="input-field">
+            </div>
+
+            <button type="submit" class="btn btn-secondary">Inquire now</button>
+
+          </form>
+
+        </div>
+      </section> -->
+
+
+
+
+
+      <!-- 
+        - #POPULAR
+      -->
+
+      <section class="popular" id="destination">
+        <div class="container">
+
+          <p class="section-subtitle">Unlock the Wonders of Metaverse</p>
+
+          <h2 class="h2 section-title">Meta-Destinations</h2>
+
+          <p class="section-text">
+            "Embark on digital adventures in the meta-verse, enticing virtual tourists with immersive experiences,
+            diverse landscapes, and interactive cultural encounters."
+          </p>
+
+          <ul class="popular-list">
+
+            <li>
+              <div class="popular-card">
+
+                <figure class="card-img">
+                  <div class="i"
+                    onclick="openWindow('https://sketchfab.com/models/d349fc873e7e4a2b9eed4427a8da306b/embed?autostart=1&internal=1&tracking=0&ui_infos=0&ui_snapshots=1&ui_stop=0&ui_watermark=0')">
+                    <img src="./images/bhu.png" alt="bhu" loading="lazy">
+                  </div>
+                  <script>
+                    function openWindow(url) {
+                      var popupWidth = 500;
+                      var popupHeight = 150;
+                      var leftPosition = (screen.width - popupWidth) / 2;
+                      var topPosition = (screen.height - popupHeight) / 2;
+
+                      var popupWindow = window.open('', '_blank', 'width=' + popupWidth + ', height=' + popupHeight + ', left=' + leftPosition + ', top=' + topPosition);
+
+                      // Wait for the window to open before writing the iframe content
+                      popupWindow.onload = function () {
+                        popupWindow.document.write('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Popup Window</title></head><body><iframe src="' + url + '" style="width:100%; height:100%; border:none;"></iframe></body></html>');
+                      };
+                    }
+                  </script>
+                </figure>
+
+                <div class="card-content">
+
+                  <div class="card-rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                  </div>
+
+                  <p class="card-subtitle">
+                    <a href="#">Varanasi</a>
+                  </p>
+
+                  <h3 class="h3 card-title">
+                    <a href="#">IIT-BHU Vishwanath Temple</a>
+                  </h3>
+
+                  <p class="card-text">
+                    "Explore Varanasi's IIT-BHU temple, to get spritual experience!"
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="popular-card">
+
+                <figure class="card-img">
+                  <div class="i"
+                    onclick="openWindow('https://sketchfab.com/models/13c8ef0613564a92b43ee974c1182f56/embed?autostart=1&internal=1&tracking=0&ui_infos=0&ui_snapshots=1&ui_stop=0&ui_watermark=0')">
+                    <img src="./images/ellora.png" alt="Burj khalifa, dubai" loading="lazy">
+                  </div>
+                  <script>
+                    function openWindow(url) {
+                      var popupWidth = 700;
+                      var popupHeight = 500;
+                      var leftPosition = (screen.width - popupWidth) / 2;
+                      var topPosition = (screen.height - popupHeight) / 2;
+
+                      var popupWindow = window.open('', '_blank', 'width=' + popupWidth + ', height=' + popupHeight + ', left=' + leftPosition + ', top=' + topPosition);
+
+                      // Wait for the window to open before writing the iframe content
+                      popupWindow.onload = function () {
+                        popupWindow.document.write('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Popup Window</title></head><body><iframe src="' + url + '" style="width:100%; height:100%; border:none;"></iframe></body></html>');
+                      };
+                    }
+                  </script>
+                </figure>
+
+                <div class="card-content">
+
+                  <div class="card-rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                  </div>
+
+                  <p class="card-subtitle">
+                    <a href="#">Ellora</a>
+                  </p>
+
+                  <h3 class="h3 card-title">
+                    <a href="#">Ellora Caves</a>
+                  </h3>
+
+                  <p class="card-text">
+                    "Ellora Caves: Marvel of ancient rock-cut architecture."
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="popular-card">
+
+                <figure class="card-img">
+                  <div class="i"
+                    onclick="openWindow('https://sketchfab.com/models/ae06291e8d79463b950c0f71d28ad90f/embed?autostart=1&internal=1&tracking=0&ui_infos=0&ui_snapshots=1&ui_stop=0&ui_watermark=0')">
+                    <img src="./images/rajgad.png" alt="rajgad" loading="lazy">
+                  </div>
+                  <script>
+                    function openWindow(url) {
+                      var popupWidth = 700;
+                      var popupHeight = 500;
+                      var leftPosition = (screen.width - popupWidth) / 2;
+                      var topPosition = (screen.height - popupHeight) / 2;
+
+                      var popupWindow = window.open('', '_blank', 'width=' + popupWidth + ', height=' + popupHeight + ', left=' + leftPosition + ', top=' + topPosition);
+
+                      // Wait for the window to open before writing the iframe content
+                      popupWindow.onload = function () {
+                        popupWindow.document.write('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Popup Window</title></head><body><iframe src="' + url + '" style="width:100%; height:100%; border:none;"></iframe></body></html>');
+                      };
+                    }
+                  </script>
+                </figure>
+
+                <div class="card-content">
+
+                  <div class="card-rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                  </div>
+
+                  <p class="card-subtitle">
+                    <a href="#">Pune</a>
+                  </p>
+
+                  <h3 class="h3 card-title">
+                    <a href="#">Kille Rajgad</a>
+                  </h3>
+
+                  <p class="card-text">
+                    "Rajgad Fort: Iconic historical landmark, panoramic views, rich cultural heritage."
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+          <!-- <button class="btn btn-primary">More destintion</button> -->
+          <ul class="popular-list">
+            <!-- Nxt line destinations-->
+            <li>
+              <div class="popular-card">
+
+                <figure class="card-img">
+                  <div class="i"
+                    onclick="openWindow('https://sketchfab.com/models/4685ffec48df4c69b821f3cf66aa81ef/embed?autostart=1&internal=1&tracking=0&ui_infos=0&ui_snapshots=1&ui_stop=0&ui_watermark=0')">
+                    <img src="./images/harihar.png" alt="bhu" loading="lazy">
+                  </div>
+                  <script>
+                    function openWindow(url) {
+                      var popupWidth = 700;
+                      var popupHeight = 500;
+                      var leftPosition = (screen.width - popupWidth) / 2;
+                      var topPosition = (screen.height - popupHeight) / 2;
+
+                      var popupWindow = window.open('', '_blank', 'width=' + popupWidth + ', height=' + popupHeight + ', left=' + leftPosition + ', top=' + topPosition);
+
+                      // Wait for the window to open before writing the iframe content
+                      popupWindow.onload = function () {
+                        popupWindow.document.write('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Popup Window</title></head><body><iframe src="' + url + '" style="width:100%; height:100%; border:none;"></iframe></body></html>');
+                      };
+                    }
+                  </script>
+                </figure>
+
+                <div class="card-content">
+
+                  <div class="card-rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                  </div>
+
+                  <p class="card-subtitle">
+                    <a href="#">Nashik forts</a>
+                  </p>
+
+                  <h3 class="h3 card-title">
+                    <a href="#">Kille Harihar</a>
+                  </h3>
+
+                  <p class="card-text">
+                    "Harihar Fort: Stunning trek, panoramic views, historical marvel in Maharashtra."
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="popular-card">
+
+                <figure class="card-img">
+                  <div class="i"
+                    onclick="openWindow('https://sketchfab.com/models/6a5493c95d1d462f9861d28f86b774ae/embed?autostart=1&internal=1&tracking=0&ui_infos=0&ui_snapshots=1&ui_stop=0&ui_watermark=0')">
+                    <img src="./images/suntemple.png" alt="Burj khalifa, dubai" loading="lazy">
+                  </div>
+                  <script>
+                    function openWindow(url) {
+                      var popupWidth = 700;
+                      var popupHeight = 500;
+                      var leftPosition = (screen.width - popupWidth) / 2;
+                      var topPosition = (screen.height - popupHeight) / 2;
+
+                      var popupWindow = window.open('', '_blank', 'width=' + popupWidth + ', height=' + popupHeight + ', left=' + leftPosition + ', top=' + topPosition);
+
+                      // Wait for the window to open before writing the iframe content
+                      popupWindow.onload = function () {
+                        popupWindow.document.write('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Popup Window</title></head><body><iframe src="' + url + '" style="width:100%; height:100%; border:none;"></iframe></body></html>');
+                      };
+                    }
+                  </script>
+                </figure>
+
+                <div class="card-content">
+
+                  <div class="card-rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                  </div>
+
+                  <p class="card-subtitle">
+                    <a href="#">Odisha</a>
+                  </p>
+
+                  <h3 class="h3 card-title">
+                    <a href="#">Konark Surya Mandir</a>
+                  </h3>
+
+                  <p class="card-text">
+                    "Konark Sun Temple: Architectural marvel, ancient sun worship, intricate stone carvings."
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="popular-card">
+
+                <figure class="card-img">
+                  <div class="i"
+                    onclick="openWindow('https://sketchfab.com/models/687593c74bde429eaf0ad69718db5461/embed?autostart=1&internal=1&tracking=0&ui_infos=0&ui_snapshots=1&ui_stop=0&ui_watermark=0')">
+                    <img src="./images/mumbai.png" alt="Kyoto temple, japan" loading="lazy">
+                  </div>
+                  <script>
+                    function openWindow(url) {
+                      var popupWidth = 700;
+                      var popupHeight = 500;
+                      var leftPosition = (screen.width - popupWidth) / 2;
+                      var topPosition = (screen.height - popupHeight) / 2;
+
+                      var popupWindow = window.open('', '_blank', 'width=' + popupWidth + ', height=' + popupHeight + ', left=' + leftPosition + ', top=' + topPosition);
+
+                      // Wait for the window to open before writing the iframe content
+                      popupWindow.onload = function () {
+                        popupWindow.document.write('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Popup Window</title></head><body><iframe src="' + url + '" style="width:100%; height:100%; border:none;"></iframe></body></html>');
+                      };
+                    }
+                  </script>
+                </figure>
+
+                <div class="card-content">
+
+                  <div class="card-rating">
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                    <ion-icon name="star"></ion-icon>
+                  </div>
+
+                  <p class="card-subtitle">
+                    <a href="#">Mumabai</a>
+                  </p>
+
+                  <h3 class="h3 card-title">
+                    <a href="#">Chatrapathi Shivaji Maharaj Terminus </a>
+                  </h3>
+
+                  <p class="card-text">
+                    "Iconic Mumbai railway hub, Victorian architecture masterpiece."
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+          <button class="btn btn-primary"><a href="#destination" style="color: aliceblue;">More destintion</a></button>
+        </div>
+      </section>
+
+
+      <!-- 
+        - #PACKAGE
+      -->
+
+      <section class="package" id="package">
+        <div class="container">
+
+          <p class="section-subtitle">Popular Packeges</p>
+
+          <h2 class="h2 section-title">Journey Offers</h2>
+
+          <p class="section-text">
+            "Experience our free version with essential features. No cost, unlimited access, and a seamless
+            user-friendly experience for all."
+          </p>
+
+          <ul class="package-list">
+
+            <li>
+              <div class="package-card">
+
+                <figure class="card-banner">
+                  <img src="./images/c3.png" alt="Explore India's Diverse Landscapes" loading="lazy">
+                </figure>
+
+                <div class="card-content">
+
+                  <h3 class="h3 card-title">Explore India's Diverse Landscapes</h3>
+
+                  <p class="card-text">
+                    Visit ancient temples, majestic forts, and sacred pilgrimage sites.
+                  </p>
+
+                  <ul class="card-meta-list">
+
+                    <li class="card-meta-item">
+                      <div class="meta-box">
+                        <ion-icon name="time"></ion-icon>
+
+                        <p class="text">7D/6N</p>
+                      </div>
+                    </li>
+
+                    <li class="card-meta-item">
+                      <div class="meta-box">
+                        <ion-icon name="people"></ion-icon>
+
+                        <p class="text">pax: 10</p>
+                      </div>
+                    </li>
+
+                    <li class="card-meta-item">
+                      <div class="meta-box">
+                        <ion-icon name="location"></ion-icon>
+
+                        <p class="text">India</p>
+                      </div>
+                    </li>
+
+                  </ul>
+
+                </div>
+
+                <div class="card-price">
+
+                  <div class="wrapper">
+
+                    <p class="reviews">(25 reviews)</p>
+
+                    <div class="card-rating">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                    </div>
+
+                  </div>
+
+                  <p class="price">
+                    Free Version
+                    <span>its a free version</span>
+                  </p>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="package-card">
+
+                <figure class="card-banner">
+                  <img src="./images/c1.png" alt="Thrills in Nature: Trekking, Wildlife, and Beach Adventures"
+                    loading="lazy">
+                </figure>
+
+                <div class="card-content">
+
+                  <h3 class="h3 card-title">Thrills in Nature: Trekking, Wildlife, and Beach Adventures</h3>
+
+                  <p class="card-text">
+                    Discover India's thrilling adventures and breathtaking natural landscapes for exploration.
+                  </p>
+
+                  <ul class="card-meta-list">
+
+                    <li class="card-meta-item">
+                      <div class="meta-box">
+                        <ion-icon name="time"></ion-icon>
+
+                        <p class="text">7D/6N</p>
+                      </div>
+                    </li>
+
+                    <li class="card-meta-item">
+                      <div class="meta-box">
+                        <ion-icon name="people"></ion-icon>
+
+                        <p class="text">pax: 10</p>
+                      </div>
+                    </li>
+
+                    <li class="card-meta-item">
+                      <div class="meta-box">
+                        <ion-icon name="location"></ion-icon>
+
+                        <p class="text">India</p>
+                      </div>
+                    </li>
+
+                  </ul>
+
+                </div>
+
+                <div class="card-price">
+
+                  <div class="wrapper">
+
+                    <p class="reviews">(20 reviews)</p>
+
+                    <div class="card-rating">
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                      <ion-icon name="star"></ion-icon>
+                    </div>
+
+                  </div>
+
+                  <p class="price">
+                    Premium Version
+                    <span></span>
+                  </p>
+                  <button class="btn btn-primary"><a href=#contact style="color:aliceblue"> Contact us</a> </button>
+
+                </div>
+
+              </div>
+            </li>
+
+          </ul>
+
+        </div>
+
+
+
+        </div>
+
+        </div>
+        </li>
+
+        </ul>
+
+        <button class="btn btn-primary">Contact us for details</button>
+
+        </div>
+      </section>
+
+
+
+
+
+      <!-- 
+        - #GALLERY
+      -->
+
+      <section class="gallery" id="gallery">
+        <div class="container">
+
+          <p class="section-subtitle">Photo Gallery</p>
+
+          <h2 class="h2 section-title">Travellers Gallery</h2>
+
+          <p class="section-text">
+            "Capturing moments worldwide. Explore stunning landscapes, cultural diversity, and unique experiences
+            through travelers' lens. Wanderlust inspiration awaits."
+          </p>
+
+          <ul class="gallery-list">
+
+            <li class="gallery-item">
+              <figure class="gallery-image">
+                <img src="./images/gallery-1.jpg" alt="Gallery image">
+              </figure>
+            </li>
+
+            <li class="gallery-item">
+              <figure class="gallery-image">
+                <img src="./images/gallery-2.jpg" alt="Gallery image">
+              </figure>
+            </li>
+
+            <li class="gallery-item">
+              <figure class="gallery-image">
+                <img src="./images/gallery-3.jpg" alt="Gallery image">
+              </figure>
+            </li>
+
+            <li class="gallery-item">
+              <figure class="gallery-image">
+                <img src="./images/gallery-4.jpg" alt="Gallery image">
+              </figure>
+            </li>
+
+            <li class="gallery-item">
+              <figure class="gallery-image">
+                <img src="./images/gallery-5.jpg" alt="Gallery image">
+              </figure>
+            </li>
+
+          </ul>
+
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+
+
+
+
+  <!-- 
+    - #FOOTER
+  -->
+  <section class="contact" id="contact">
+    <footer class="footer">
+
+      <div class="footer-top">
+        <div class="container">
+
+          <div class="footer-brand">
+
+            <a href="#" class="logo">
+              <img src="./images/logo.svg" alt="Tourly logo">
+            </a>
+
+            <p class="footer-text">
+              "Explore the limitless realms of meta-tourism! Immerse in virtual worlds,
+              experience cultures, and discover wonders from the comfort of your screen."
+            </p>
+
+          </div>
+
+          <div class="footer-contact">
+
+            <h4 class="contact-title">Contact Us</h4>
+
+            <p class="contact-text">
+              Feel free to contact and reach us !!
+            </p>
+
+            <ul>
+
+              <li class="contact-item">
+                <ion-icon name="call-outline"></ion-icon>
+
+                <a href="tel:+01123456790" class="contact-link">+91 8976545678</a>
+              </li>
+
+              <li class="contact-item">
+                <ion-icon name="mail-outline"></ion-icon>
+
+                <a href="mailto:info.tourly.com" class="contact-link">metatourism@mmit.edu.in</a>
+              </li>
+
+              <li class="contact-item">
+                <ion-icon name="location-outline"></ion-icon>
+
+                <address>MMIT, India</address>
+              </li>
+
+            </ul>
+
+          </div>
+
+          <div class="footer-form">
+            <p class="form-text">
+              Subscribe to our newsletter for more updates & news!
+            </p>
+            <form id="subscribeForm" class="form-wrapper" onsubmit="subscribeUser(event)">
+              <input type="email" id="emailInput" name="email" class="input-field" placeholder="Enter Your Email"
+                required>
+              <button type="submit" class="btn btn-secondary">Subscribe</button>
+            </form>
+            <p id="confirmationMessage" class="confirmation-message" style="display: none;">Thanks for Subscribing</p>
+          </div>
+        </div>
+
+        <script>
+          function subscribeUser(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const emailInput = document.getElementById('emailInput');
+            const email = emailInput.value;
+
+            // Simulate sending the email (replace with actual API call)
+            setTimeout(function () {
+              const subscribeForm = document.getElementById('subscribeForm');
+              const confirmationMessage = document.getElementById('confirmationMessage');
+
+              subscribeForm.style.display = 'none';
+              confirmationMessage.style.display = 'block';
+            }, 1000); // Simulate sending for 1 second (replace with actual API call)
+          }
+        </script>
+
+        <div class="footer-bottom">
+          <div class="container">
+
+            <p class="copyright">
+              &copy; 2024 <a href="">Meta-Tourism</a>. All rights reserved
+            </p>
+
+            <ul class="footer-bottom-list">
+
+              <li>
+                <a href="#" class="footer-bottom-link">Privacy Policy</a>
+              </li>
+
+              <li>
+                <a href="#" class="footer-bottom-link">Term & Condition</a>
+              </li>
+
+              <li>
+                <a href="#" class="footer-bottom-link">FAQ</a>
+              </li>
+
+            </ul>
+
+          </div>
+        </div>
+
+    </footer>
+
+
+
+
+
+    <!-- 
+    - #GO TO TOP
+  -->
+
+    <a href="#top" class="go-top" data-go-top>
+      <ion-icon name="chevron-up-outline"></ion-icon>
+    </a>
+
+
+
+
+
+    <!-- 
+    - custom js link
+  -->
+    <script src="./images/js/script.js"></script>
+
+    <!-- 
+    - ionicon link
+  -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
